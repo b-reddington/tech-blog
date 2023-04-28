@@ -55,4 +55,4 @@ User.init(
     }
 );
 
-mopdule.exports = User;
+module.exports = User;
