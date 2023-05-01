@@ -4,38 +4,34 @@
     </div>
 </div>
 
-<div class="card col-4">
-    <div class="card-body bg-dark-subtle">
-        <div class="card-header">
+<div class="card">
+    <div class="card-body bg-dark text-light rounded-3">
+        <div class="card-header rounded-3">
             <h3>Create a New Post:</h3>
         </div>
         <form class="form new-post-form">
-            <div class="form-group">
                 <label for="post-name">Post Title</label>
-                <input class="form-control form-input bg-dark-subtle border border-primary" type="text" id="post-name" name="post-name" />
-            </div>
-            <div class="form-group">
+                <input class="form-control form-input border border-primary" type="text" id="post-name" name="post-name" placeholder="Type your title here..."/>
                 <label for="post-desc">Post Content</label>
-                <textarea class="form-control form-input bg-dark-subtle border border-primary" id="post-desc" name="post-desc"></textarea>
-            </div>
-            </form>
+                <textarea class="form-control form-input border border-primary" id="post-desc" name="post-desc" placeholder="Type your post here..."></textarea>
             <div class="card-footer">
-            <div class="form-group">
                 <button type="submit" class="btn btn-primary col-12">Publish Post</button>
             </div>
         </form>
     </div>
 
     {{#if posts.length}}
-    <div class="col-md-6 post-list">
-        <h3>Current Posts:</h3>
+    <div class="col-6 container post-list">
+        <h3>Posts:</h3>
 
         {{#each posts as |post|}}
-        <div class="row mb-2">
-            <div class="col-md-8">
+        <div class="row card mb-2">
+            <div class="card-body">
                 <h4><a href="/posts/{{post.id}}">{{post.name}}</a></h4>
+                <p>{{description}}</p>
             </div>
-            <div class="col-md-4">
+            <div class="card-footer">
+                <p>Created by {{user.name}} on {{format_date date_created}}</p>
                 <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
             </div>
         </div>
