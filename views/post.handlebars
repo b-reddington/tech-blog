@@ -1,0 +1,39 @@
+<div class="row col-8 card position-absolute top-50 start-50 translate-middle">
+    <div class="card-header">
+        <h2>{{name}}</h2>
+    </div>
+    <div class="card-body">
+        <p>{{description}}</p>
+    </div>
+    <div class="card-footer">
+        <p class="text-center">Post by {{user.name}} on {{format_date date_created}}</p>
+    </div>
+    <h5>Add a Comment:</h5>
+    <form class="new-comment-form">
+        <textarea class="form-control form-input border border-primary" name="comment" id="comment"
+            placeholder="Type your comment here..."></textarea>
+        <button class="btn btn-sm btn-primary col-12">Post Comment</button>
+    </form>
+    <div class="container">
+        <div class="row row-gap-1 col-12 card mt-5">
+            {{#if comments.length}}
+            <div class="card-header">
+                <h2>Comments</h2>
+            </div>
+            {{#each comments as |comment|}}
+            <div class="card-body">
+                <p>{{comment.description}}</p>
+            </div>
+            <div class="card-footer">
+                <p>Comment by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="card-header">
+                <h2>No Comments Yet</h2>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+<script src="../js/comment.js"></script>

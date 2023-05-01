@@ -1,11 +1,11 @@
 <div class="row">
-    <div class="col-auto">
+    <div class="text-center">
         <h2>Welcome, {{name}}!</h2>
     </div>
 </div>
 
-<div class="card">
-    <div class="card-body bg-dark text-light rounded-3">
+<div class="card col-12">
+    <div class="card-body rounded-3">
         <div class="card-header rounded-3">
             <h3>Create a New Post:</h3>
         </div>
@@ -21,23 +21,24 @@
     </div>
 
     {{#if posts.length}}
-    <div class="col-6 container post-list">
-        <h3>Posts:</h3>
+    <div class="col-10 container post-list">
+        <h3>Previous posts by you:</h3>
 
-        {{#each posts as |post|}}
+        {{#each (sort_by_date posts) as |post|}}
         <div class="row card mb-2">
             <div class="card-body">
-                <h4><a href="/posts/{{post.id}}">{{post.name}}</a></h4>
+                <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4>
                 <p>{{description}}</p>
             </div>
             <div class="card-footer">
-                <p>Created by {{user.name}} on {{format_date date_created}}</p>
-                <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
+                <p>Created on {{format_date date_created}}</p>
+                <button class="btn btn-sm btn-danger col-12" data-id="{{post.id}}">Delete Post</button>
             </div>
         </div>
         {{/each}}
     </div>
     {{/if}}
+</div>
 </div>
 
 <script src="./js/dashboard.js"></script>
