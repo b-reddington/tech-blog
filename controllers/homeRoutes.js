@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -35,6 +35,11 @@ router.get('/post/:id', async (req, res) => {
                     model: User,
                     attributes: ['name'],
                 },
+                {
+                    model: Comment,
+                    include: [User],
+                    order: [['date_created', 'DESC']]
+                }
             ],
         });
 
@@ -45,9 +50,11 @@ router.get('/post/:id', async (req, res) => {
             logged_in: req.session.logged_in
         });
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
+
 
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -65,6 +72,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
             logged_in: true
         });
     } catch (err) {
+        console.error(err);
         res.status(500).json(err);
     }
 });
