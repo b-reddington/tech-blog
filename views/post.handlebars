@@ -20,12 +20,12 @@
             <div class="card-header">
                 <h2>Comments</h2>
             </div>
-            {{#each comments as |comment|}}
+            {{#each comments}}
             <div class="card-body">
-                <p>{{comment.description}}</p>
+                <p>{{comment}}</p>
             </div>
             <div class="card-footer">
-                <p>Comment by {{comment.user.name}} on {{format_date comment.date_created}}</p>
+                <p>Comment by {{this.user.name}} on {{format_date this.date_created}}</p>
             </div>
             {{/each}}
             {{else}}
